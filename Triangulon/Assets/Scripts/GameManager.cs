@@ -9,13 +9,12 @@ public class GameManager : MonoBehaviour
     public GameObject bullet;
 
     public Vector3 pos;
-    public Quaternion rot;
 
     public bool waiting = false;
 
     public void Start()
     {
-
+        gVar.lives = 3;
     }
 
     public void Update()
@@ -24,40 +23,54 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            ship.transform.Rotate(0, 0, 3);
+            ship.transform.Rotate(0, 0, 4);
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            ship.transform.Rotate(0, 0, -3);
+            ship.transform.Rotate(0, 0, -4);
         }
 
-        if (Input.GetKey("space") && waiting == false)
+        if (Input.GetKeyDown("space") && waiting == false)
         {
-            rot.Set(0, 0, ship.transform.rotation.z, 1);
             Instantiate(bullet, ship.transform.position + (transform.up * 1), ship.transform.rotation * Quaternion.Euler (0f, 0f, 0f));
             StartCoroutine("wait");
         }
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            ship.transform.position += transform.up * 0.06f;
+            ship.transform.position += transform.up * 0.08f;
+
+            gVar.moving = true;
+        }
+        else
+        {
+            gVar.moving = false;
         }
     }
 
     IEnumerator wait()
     {
         waiting = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         waiting = false;
     }
 
-    //Change the Quaternion values depending on the values of the ship
-    private static Quaternion Change(float x, float y, float z)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        Quaternion rot = new Quaternion();
-        rot.Set(x, y, z, 1);
-        //Return the new Quaternion
-        return rot;
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Hit();
+        }
+    }
+
+    public void Hit()
+    {
+        gVar.lives -= 1;
+        if (gVar.lives == 0)
+        {
+            Time.timeScale = 0;
+            waiting = true;
+        }
     }
 }

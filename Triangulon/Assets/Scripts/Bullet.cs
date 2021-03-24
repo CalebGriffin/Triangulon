@@ -9,11 +9,13 @@ public class Bullet : MonoBehaviour
 
     public Vector3 targetVec;
 
-    public float speed = 5f;
+    public float speed;
 
     void Awake()
     {
         targetVec = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z);
+
+        speed = 25f;
     }
 
     // Update is called once per frame
@@ -21,5 +23,17 @@ public class Bullet : MonoBehaviour
     {
         float step = speed * Time.deltaTime;
         bullet.transform.position = Vector3.MoveTowards(bullet.transform.position, targetVec, step);
+    }
+
+    void OnBecameInvisible()
+    {
+        StartCoroutine("Wait");
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1f);
+
+        Destroy(bullet);
     }
 }
