@@ -5,6 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Bullet
+  - PowerUp
+  - Boss
+  - Shooter
+  - BossBaby
+  - EnemyBullet
+  - Left
+  - Right
+  - Top
+  - Bottom
   layers:
   - Default
   - TransparentFX
@@ -14,9 +24,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Ship
+  - Enemy
+  - Border
   - 
   - 
   - 
