@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
         gVar.lives = 3;
 
         daveSR = dave.GetComponent<SpriteRenderer>();
+
+        Application.targetFrameRate = 60;
     }
 
     public void Update()
