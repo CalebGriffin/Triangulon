@@ -47,12 +47,12 @@ public class Spawner : MonoBehaviour
             case int n when (n > 1 && n < 7):
                 spawnPointVec = new Vector3(14, 6, 0);
                 enemyToSpawn = Instantiate(shooter, spawnPointVec, Quaternion.identity);
-                enemyToSpawn.transform.localScale = Vector3.one * Random.Range(3.5f, 5.5f);
+                enemyToSpawn.transform.localScale = Vector3.one * Random.Range(0.4f, 0.65f);
                 break;
 
             case int n when (n > 6):
                 enemyToSpawn = Instantiate(enemy, spawnPointVec, Quaternion.identity);
-                enemyToSpawn.transform.localScale = Vector3.one * Random.Range(3.5f, 5.5f);
+                enemyToSpawn.transform.localScale = Vector3.one * Random.Range(0.4f, 0.65f);
                 break;
             
             default:

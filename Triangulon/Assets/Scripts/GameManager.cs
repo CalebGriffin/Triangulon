@@ -29,14 +29,14 @@ public class GameManager : MonoBehaviour
     {
         gVar.lives = 3;
 
-        daveSR = dave.GetComponent<SpriteRenderer>();
+        //daveSR = dave.GetComponent<SpriteRenderer>();
 
         Application.targetFrameRate = 60;
     }
 
     public void Update()
     {
-        pos = new Vector3(ship.transform.position.x, (ship.transform.position.y + 1f), ship.transform.position.z);
+        pos = new Vector3(ship.transform.position.x, (ship.transform.position.y + 100f), ship.transform.position.z);
 
         if (Input.GetKey(KeyCode.LeftArrow) && gVar.paused == false)
         {
@@ -76,6 +76,11 @@ public class GameManager : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+
         if (collision.gameObject.tag == "Enemy")
         {
             Hit();
@@ -127,6 +132,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+    }
+
     public void OnTriggerExit2D(Collider2D collision)
     {
         touchingBorder = false;
@@ -150,7 +163,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0f);
 
         shipSR.enabled = false;
-        daveSR.enabled = false;
+        //daveSR.enabled = false;
 
         particleSys.SetActive(true);
 
@@ -208,7 +221,7 @@ public class GameManager : MonoBehaviour
         ship.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
 
         shipSR.enabled = true;
-        daveSR.enabled = true;
+        //daveSR.enabled = true;
 
         particleSys.SetActive(false);
 

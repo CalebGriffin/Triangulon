@@ -4824,8 +4824,8 @@ GameObject:
   - component: {fileID: 4892010143494269134}
   - component: {fileID: 4892010143494269135}
   - component: {fileID: 9187322941330622849}
-  - component: {fileID: 4892010143494269132}
   - component: {fileID: 8326721135080999873}
+  - component: {fileID: 1416522965228019898}
   m_Layer: 9
   m_Name: Shooter
   m_TagString: Shooter
@@ -4842,7 +4842,7 @@ Transform:
   m_GameObject: {fileID: 4892010143494269133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 7875402026806714865}
   m_Father: {fileID: 0}
@@ -4887,7 +4887,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 316abf4f3a2fa46c9bbe12eaea6bcb5e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd5672bce2a034febaa73df06b09785b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4941,8 +4941,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &4892010143494269132
-PolygonCollider2D:
+--- !u!114 &8326721135080999873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4892010143494269133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2395bc9d881274b96a1dcf26cef63e0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship: {fileID: 0}
+  enemyOb: {fileID: 4892010143494269133}
+  particleSys: {fileID: 4892010143494269133}
+  shooterBullet: {fileID: 1979396145709581977, guid: e0c61199b1df2439ba66401aebf83427,
+    type: 3}
+  aimC: {fileID: 4892010143494269135}
+  enemySR: {fileID: 4892010143494269134}
+  hitbox: {fileID: 0}
+  targetLoc: {x: 0, y: 0, z: 0}
+  alive: 0
+--- !u!61 &1416522965228019898
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4958,43 +4980,12 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.28, y: 0.42}
+    oldSize: {x: 4.5, y: 4.4}
     newSize: {x: 0.28, y: 0.42}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.019469507, y: 0.20902114}
-      - {x: -0.017883845, y: 0.20887314}
-      - {x: -0.14056343, y: 0.09069672}
-      - {x: -0.14214332, y: -0.16259786}
-      - {x: -0.11731432, y: -0.18062264}
-      - {x: 0.0007801294, y: -0.1806331}
-      - {x: 0.11762474, y: -0.17972238}
-      - {x: 0.1412334, y: -0.16224183}
-      - {x: 0.14056343, y: 0.088159114}
-      - {x: 0.07732041, y: 0.15083872}
---- !u!114 &8326721135080999873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4892010143494269133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2395bc9d881274b96a1dcf26cef63e0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ship: {fileID: 0}
-  enemyOb: {fileID: 4892010143494269133}
-  particleSys: {fileID: 3073680658094021046}
-  shooterBullet: {fileID: 1979396145709581977, guid: e0c61199b1df2439ba66401aebf83427,
-    type: 3}
-  aimC: {fileID: 4892010143494269135}
-  enemySR: {fileID: 4892010143494269134}
-  hitbox: {fileID: 4892010143494269132}
-  targetLoc: {x: 0, y: 0, z: 0}
-  alive: 0
+  serializedVersion: 2
+  m_Size: {x: 4.5, y: 4.4}
+  m_EdgeRadius: 0
