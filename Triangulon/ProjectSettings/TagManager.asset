@@ -15,6 +15,7 @@ TagManager:
   - Right
   - Top
   - Bottom
+  - PP
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Ship
   - Enemy
   - Border
-  - 
+  - PP
   - 
   - 
   - 
