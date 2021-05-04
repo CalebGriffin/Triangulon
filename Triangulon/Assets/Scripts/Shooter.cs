@@ -7,7 +7,7 @@ public class Shooter : MonoBehaviour
 {
     public GameObject ship;
     public GameObject enemyOb;
-    public GameObject particleSys;
+    //public GameObject particleSys;
     public GameObject shooterBullet;
 
     public ConstraintSource shipSource;
@@ -16,7 +16,7 @@ public class Shooter : MonoBehaviour
 
     public SpriteRenderer enemySR;
 
-    public PolygonCollider2D hitbox;
+    public BoxCollider2D hitbox;
 
     public Vector3 targetLoc;
 
@@ -33,7 +33,7 @@ public class Shooter : MonoBehaviour
         aimC.AddSource(shipSource);
 
         enemySR = enemyOb.GetComponent<SpriteRenderer>();
-        hitbox = enemyOb.GetComponent<PolygonCollider2D>();
+        hitbox = enemyOb.GetComponent<BoxCollider2D>();
 
         targetLoc = new Vector3(-14, 6, 0);
 
@@ -64,7 +64,7 @@ public class Shooter : MonoBehaviour
         enemySR.enabled = false;
         hitbox.enabled = false;
 
-        particleSys.SetActive(true);
+        //particleSys.SetActive(true);
 
         gVar.score += gVar.level * 500;
 

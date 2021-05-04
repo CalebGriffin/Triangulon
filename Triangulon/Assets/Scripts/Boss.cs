@@ -62,7 +62,7 @@ public class Boss : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            collision.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            collision.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             Explode();
         }
     }

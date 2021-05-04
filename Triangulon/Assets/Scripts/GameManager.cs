@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject ship;
     public GameObject bullet;
-    public GameObject particleSys;
+    //public GameObject particleSys;
     public GameObject dave;
     public GameObject[] enemies;
     public GameObject[] powerups;
@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] bosses;
     public GameObject[] bossBabies;
     public GameObject[] enemyBullets;
+
+    //For testing only
+    public GameObject gameOverText;
+    public Text livesText;
 
     public Vector3 pos;
 
@@ -29,6 +33,8 @@ public class GameManager : MonoBehaviour
     {
         gVar.lives = 3;
 
+        livesText.text = gVar.lives.ToString();
+
         //daveSR = dave.GetComponent<SpriteRenderer>();
 
         Application.targetFrameRate = 60;
@@ -36,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
+        livesText.text = gVar.lives.ToString();
+
         pos = new Vector3(ship.transform.position.x, (ship.transform.position.y + 100f), ship.transform.position.z);
 
         if (Input.GetKey(KeyCode.LeftArrow) && gVar.paused == false)
@@ -154,6 +162,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Death()
     {
+        gameOverText.SetActive(true);
         yield return new WaitForSeconds(0.6f);
         Time.timeScale = 0;
     }
@@ -165,7 +174,7 @@ public class GameManager : MonoBehaviour
         shipSR.enabled = false;
         //daveSR.enabled = false;
 
-        particleSys.SetActive(true);
+        //particleSys.SetActive(true);
 
         gVar.paused = true;
         waiting = true;
@@ -223,7 +232,7 @@ public class GameManager : MonoBehaviour
         shipSR.enabled = true;
         //daveSR.enabled = true;
 
-        particleSys.SetActive(false);
+        //particleSys.SetActive(false);
 
         gVar.paused = false;
         waiting = false;

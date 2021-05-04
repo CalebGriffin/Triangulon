@@ -28,7 +28,8 @@ public class gVar
 
     public static float spawnTimer;
 
-    public static int gSpawnTimer = 6;
+    // Temporarily adjusted for testing
+    public static int gSpawnTimer = 4;
 
     public static int enemyRandomiser;
 }

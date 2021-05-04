@@ -6,13 +6,13 @@ public class EnemyBullet : MonoBehaviour
 {
     public GameObject bullet;
     public GameObject target;
-    public GameObject particleSys;
+    //public GameObject particleSys;
 
     public Vector3 targetVec;
 
     public SpriteRenderer bulletSR;
 
-    public CircleCollider2D hitbox;
+    public BoxCollider2D hitbox;
 
     void Awake()
     {
@@ -36,7 +36,7 @@ public class EnemyBullet : MonoBehaviour
         bulletSR.enabled = false;
         hitbox.enabled = false;
 
-        particleSys.SetActive(true);
+        //particleSys.SetActive(true);
 
         StartCoroutine("WaitToDestroy");
     }

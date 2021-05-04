@@ -102,7 +102,7 @@ MonoBehaviour:
   particleSys: {fileID: 8737118800263640843}
   targetVec: {x: 0, y: 0, z: 0}
   bulletSR: {fileID: 1979396145709581983}
-  hitbox: {fileID: 0}
+  hitbox: {fileID: 409301793992369377}
 --- !u!61 &409301793992369377
 BoxCollider2D:
   m_ObjectHideFlags: 0
