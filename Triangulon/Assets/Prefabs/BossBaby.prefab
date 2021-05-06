@@ -169,7 +169,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 60
-      minScalar: 40
+      minScalar: 50
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1538,7 +1538,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: 9aab86e0fe028416d85b390d1a01aff6, type: 3}
+    - sprite: {fileID: 21300000, guid: 8718d43ad44a04b6797add987db931a7, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4822,7 +4822,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4892010143494269129}
   - component: {fileID: 4892010143494269134}
-  - component: {fileID: 4892010143494269135}
   - component: {fileID: 9187322941330622849}
   - component: {fileID: 4892010143494269132}
   - component: {fileID: -7257208238763696596}
@@ -4842,7 +4841,7 @@ Transform:
   m_GameObject: {fileID: 4892010143494269133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children:
   - {fileID: 7875402026806714865}
   m_Father: {fileID: 0}
@@ -4887,7 +4886,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a8ef72af17f114971926eb843e50116a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3b5624e4f1fe6457b92fdacf494d433f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4898,28 +4897,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!895512359 &4892010143494269135
-AimConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4892010143494269133}
-  m_Enabled: 1
-  m_Weight: 1
-  m_RotationAtRest: {x: -0, y: 0, z: 0}
-  m_RotationOffset: {x: 0, y: 0, z: 0}
-  m_AimVector: {x: 0, y: 1, z: 0}
-  m_UpVector: {x: 0, y: 0, z: -1}
-  m_WorldUpVector: {x: 0, y: 0, z: 1}
-  m_WorldUpObject: {fileID: 0}
-  m_UpType: 4
-  m_AffectRotationX: 1
-  m_AffectRotationY: 1
-  m_AffectRotationZ: 1
-  m_IsContraintActive: 1
-  m_IsLocked: 1
-  m_Sources: []
 --- !u!50 &9187322941330622849
 Rigidbody2D:
   serializedVersion: 4
@@ -4958,7 +4935,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.5, y: 3.9}
+    oldSize: {x: 3.5, y: 8.86}
     newSize: {x: 0.28, y: 0.42}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5018,9 +4995,8 @@ MonoBehaviour:
   ship: {fileID: 0}
   enemyOb: {fileID: 4892010143494269133}
   particleSys: {fileID: 4892010143494269133}
-  aimC: {fileID: 0}
-  enemySR: {fileID: 0}
-  hitbox: {fileID: 0}
+  enemySR: {fileID: 4892010143494269134}
+  hitbox: {fileID: 4892010143494269132}
   axis: {x: 0, y: 0, z: -1}
   disToShip: 0
   rotatingSpeed: 0

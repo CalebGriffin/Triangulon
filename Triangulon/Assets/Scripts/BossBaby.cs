@@ -8,15 +8,8 @@ public class BossBaby : MonoBehaviour
     public GameObject ship;
     public GameObject enemyOb;
     public GameObject particleSys;
-
-    public ConstraintSource shipSource;
-
-    public AimConstraint aimC;
-
     public SpriteRenderer enemySR;
-
     public PolygonCollider2D hitbox;
-
     public Vector3 axis = Vector3.back;
 
     public float disToShip;
@@ -25,12 +18,6 @@ public class BossBaby : MonoBehaviour
     void Awake()
     {
         ship = GameObject.Find("Ship");
-
-        aimC = GetComponent<AimConstraint>();
-
-        shipSource.sourceTransform = ship.transform;
-        shipSource.weight = 1;
-        aimC.AddSource(shipSource);
 
         enemySR = enemyOb.GetComponent<SpriteRenderer>();
         hitbox = enemyOb.GetComponent<PolygonCollider2D>();
@@ -41,9 +28,11 @@ public class BossBaby : MonoBehaviour
     {
         disToShip = Vector3.Distance(ship.transform.position, enemyOb.transform.position);
 
-        if (disToShip <= 7)
+        enemyOb.transform.Rotate(0f, 0f, 12f);
+
+        if (disToShip <= 5)
         {
-            gVar.bossMoveSpeed = 0.35f;
+            gVar.bossMoveSpeed = 0.4f;
             enemyOb.transform.RotateAround(ship.transform.position, axis, rotatingSpeed * Time.deltaTime);
         }
         else
