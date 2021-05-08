@@ -2128,7 +2128,7 @@ ParticleSystem:
         m_RotationOrder: 4
     inWorldSpace: 0
   InheritVelocityModule:
-    enabled: 0
+    enabled: 1
     m_Mode: 0
     m_Curve:
       serializedVersion: 2
@@ -5064,11 +5064,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ship: {fileID: 0}
   enemyOb: {fileID: 4892010143494269133}
-  particleSys: {fileID: 4892010143494269133}
+  particleSys: {fileID: 3073680658094021046}
   bossBabyOb: {fileID: 4892010143494269133, guid: 8fa0538faa19f496ab9fc370019000e2,
     type: 3}
   enemySR: {fileID: 0}
-  hitbox: {fileID: 0}
+  hitbox: {fileID: 4892010143494269132}
   axis: {x: 0, y: 0, z: 1}
   disToShip: 0
   rotatingSpeed: 30

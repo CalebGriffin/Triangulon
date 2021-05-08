@@ -12,7 +12,7 @@ public class EnemyBullet : MonoBehaviour
 
     public SpriteRenderer bulletSR;
 
-    public BoxCollider2D hitbox;
+    public PolygonCollider2D hitbox;
 
     void Awake()
     {

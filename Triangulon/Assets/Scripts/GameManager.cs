@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject ship;
     public GameObject bullet;
-    //public GameObject particleSys;
+    public GameObject particleSys;
+    public GameObject cannon;
     public GameObject[] enemies;
     public GameObject[] powerups;
     public GameObject[] shooters;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Vector3 pos;
 
     public SpriteRenderer shipSR;
+    public Animator animator;
 
     public bool waiting = false;
     public bool touchingBorder = false;
@@ -28,6 +30,8 @@ public class GameManager : MonoBehaviour
         gVar.lives = 3;
 
         Application.targetFrameRate = 60;
+
+        animator = cannon.GetComponent<Animator>();
     }
 
     public void Update()
@@ -47,6 +51,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown("space") && waiting == false)
         {
+            animator.SetTrigger("Fire");
             Instantiate(bullet, ship.transform.position + (transform.up * 1), ship.transform.rotation * Quaternion.Euler (0f, 0f, 0f));
             StartCoroutine("Wait");
         }
@@ -161,7 +166,7 @@ public class GameManager : MonoBehaviour
 
         shipSR.enabled = false;
 
-        //particleSys.SetActive(true);
+        particleSys.SetActive(true);
 
         gVar.paused = true;
         waiting = true;
@@ -218,7 +223,7 @@ public class GameManager : MonoBehaviour
 
         shipSR.enabled = true;
 
-        //particleSys.SetActive(false);
+        particleSys.SetActive(false);
 
         gVar.paused = false;
         waiting = false;

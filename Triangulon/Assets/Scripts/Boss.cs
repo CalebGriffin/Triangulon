@@ -17,7 +17,7 @@ public class Boss : MonoBehaviour
     public Vector3 axis = Vector3.back;
 
     public float disToShip;
-    public float rotatingSpeed = 30f;
+    public float rotatingSpeed = 50f;
 
     public bool calledByShip = false;
 
@@ -69,10 +69,10 @@ public class Boss : MonoBehaviour
         if (calledByShip == false)
         {
             bossBabyOb = (GameObject)Instantiate(bossBabyOb, enemyOb.transform.position, enemyOb.transform.rotation * Quaternion.Euler (0f, 0f, 0f));
-            bossBabyOb.GetComponent<BossBaby>().rotatingSpeed = 50f;
+            bossBabyOb.GetComponent<BossBaby>().rotatingSpeed = 75f;
 
             bossBabyOb = (GameObject)Instantiate(bossBabyOb, enemyOb.transform.position, enemyOb.transform.rotation * Quaternion.Euler (0f, 0f, 0f));
-            bossBabyOb.GetComponent<BossBaby>().rotatingSpeed = -50f;
+            bossBabyOb.GetComponent<BossBaby>().rotatingSpeed = -75f;
         }
 
         calledByShip = false;

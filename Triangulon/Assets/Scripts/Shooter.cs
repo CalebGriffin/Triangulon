@@ -7,7 +7,7 @@ public class Shooter : MonoBehaviour
 {
     public GameObject ship;
     public GameObject enemyOb;
-    //public GameObject particleSys;
+    public GameObject particleSys;
     public GameObject shooterBullet;
 
     public ConstraintSource shipSource;
@@ -16,11 +16,13 @@ public class Shooter : MonoBehaviour
 
     public SpriteRenderer enemySR;
 
-    public BoxCollider2D hitbox;
+    public PolygonCollider2D hitbox;
 
     public Vector3 targetLoc;
 
     public bool alive;
+    
+    public Animator animator;
 
     void Awake()
     {
@@ -33,7 +35,7 @@ public class Shooter : MonoBehaviour
         aimC.AddSource(shipSource);
 
         enemySR = enemyOb.GetComponent<SpriteRenderer>();
-        hitbox = enemyOb.GetComponent<BoxCollider2D>();
+        hitbox = enemyOb.GetComponent<PolygonCollider2D>();
 
         targetLoc = new Vector3(-14, 6, 0);
 
@@ -64,7 +66,7 @@ public class Shooter : MonoBehaviour
         enemySR.enabled = false;
         hitbox.enabled = false;
 
-        //particleSys.SetActive(true);
+        particleSys.SetActive(true);
 
         gVar.score += gVar.level * 500;
 
@@ -91,6 +93,8 @@ public class Shooter : MonoBehaviour
     {
         if (alive == true)
         {
+            animator.SetTrigger("ShooterFire");
+
             Instantiate(shooterBullet, enemyOb.transform.position + (transform.up * 1), enemyOb.transform.rotation * Quaternion.Euler (0f, 0f, 0f));
         }
     }
