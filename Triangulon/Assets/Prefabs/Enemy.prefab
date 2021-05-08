@@ -1542,7 +1542,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -1599,7 +1599,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -15
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2076,8 +2076,8 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
-      minScalar: 1
+      scalar: 1.5
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2128,7 +2128,7 @@ ParticleSystem:
         m_RotationOrder: 4
     inWorldSpace: 0
   InheritVelocityModule:
-    enabled: 1
+    enabled: 0
     m_Mode: 0
     m_Curve:
       serializedVersion: 2
@@ -5095,6 +5095,8 @@ MonoBehaviour:
   ship: {fileID: 0}
   enemyOb: {fileID: 4892010143494269133}
   particleSys: {fileID: 3073680658094021046}
+  cameraOb: {fileID: 0}
   aimC: {fileID: 0}
   enemySR: {fileID: 4892010143494269134}
   hitbox: {fileID: 0}
+  disToShip: 0

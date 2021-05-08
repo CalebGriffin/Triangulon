@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public GameObject ship;
     public GameObject enemyOb;
     public GameObject particleSys;
+    public GameObject cameraOb;
 
     public ConstraintSource shipSource;
 
@@ -17,9 +18,12 @@ public class Enemy : MonoBehaviour
 
     public PolygonCollider2D hitbox;
 
+    public float disToShip;
+
     void Awake()
     {
         ship = GameObject.Find("Ship");
+        cameraOb = GameObject.Find("Main Camera");
 
         aimC = GetComponent<AimConstraint>();
 
@@ -36,6 +40,9 @@ public class Enemy : MonoBehaviour
     {
         float step = gVar.enemyMoveSpeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, ship.transform.position, step);
+
+        disToShip = Vector3.Distance(ship.transform.position, enemyOb.transform.position);
+        Debug.Log(disToShip.ToString());
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -48,6 +55,8 @@ public class Enemy : MonoBehaviour
 
     public void Explode()
     {
+        StartCoroutine(cameraOb.GetComponent<CameraShake>().Shake(0.2f, 0.1f));
+
         enemySR.enabled = false;
         hitbox.enabled = false;
 
