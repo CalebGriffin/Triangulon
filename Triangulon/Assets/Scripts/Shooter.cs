@@ -68,7 +68,10 @@ public class Shooter : MonoBehaviour
 
         particleSys.SetActive(true);
 
-        gVar.score += gVar.level * 500;
+        if(gVar.calledByShip == false)
+        {
+            gVar.score += gVar.level * 500;
+        }
 
         StartCoroutine("WaitToDestroy");
     }
@@ -82,7 +85,10 @@ public class Shooter : MonoBehaviour
 
     void OnBecameInvisible()
     {
-        gVar.score += gVar.level * 250;
+        if (gVar.calledByShip == false)
+        {
+            gVar.score += gVar.level * 100;
+        }
 
         alive = false;
 

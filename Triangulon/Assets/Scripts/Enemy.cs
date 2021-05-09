@@ -42,7 +42,6 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, ship.transform.position, step);
 
         disToShip = Vector3.Distance(ship.transform.position, enemyOb.transform.position);
-        Debug.Log(disToShip.ToString());
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -55,7 +54,29 @@ public class Enemy : MonoBehaviour
 
     public void Explode()
     {
-        StartCoroutine(cameraOb.GetComponent<CameraShake>().Shake(0.2f, 0.1f));
+        switch (disToShip)
+        {
+            case float n when (n <= 3):
+                gVar.shakeMagnitude = 0.5f;
+                break;
+            
+            case float n when (n > 3 && n <= 7):
+                gVar.shakeMagnitude = 0.4f;
+                break;
+            
+            case float n when (n > 7 && n <= 11):
+                gVar.shakeMagnitude = 0.3f;
+                break;
+            
+            case float n when (n > 11 && n <= 14):
+                gVar.shakeMagnitude = 0.2f;
+                break;
+            
+            case float n when (n > 14):
+                gVar.shakeMagnitude = 0.1f;
+                break;
+        }
+        StartCoroutine(cameraOb.GetComponent<CameraShake>().Shake(0.2f, gVar.shakeMagnitude));
 
         enemySR.enabled = false;
         hitbox.enabled = false;
@@ -67,7 +88,10 @@ public class Enemy : MonoBehaviour
 
     IEnumerator WaitToDestroy()
     {
-        gVar.score += gVar.level * 100;
+        if(gVar.calledByShip == false)
+        {
+            gVar.score += gVar.level * 100;
+        }
         
         yield return new WaitForSeconds(1f);
 

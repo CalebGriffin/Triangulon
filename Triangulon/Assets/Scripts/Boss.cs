@@ -19,8 +19,6 @@ public class Boss : MonoBehaviour
     public float disToShip;
     public float rotatingSpeed = 50f;
 
-    public bool calledByShip = false;
-
     void Awake()
     {
         ship = GameObject.Find("Ship");
@@ -66,7 +64,7 @@ public class Boss : MonoBehaviour
 
         particleSys.SetActive(true);
 
-        if (calledByShip == false)
+        if (gVar.calledByShip == false)
         {
             bossBabyOb = (GameObject)Instantiate(bossBabyOb, enemyOb.transform.position, enemyOb.transform.rotation * Quaternion.Euler (0f, 0f, 0f));
             bossBabyOb.GetComponent<BossBaby>().rotatingSpeed = 75f;
@@ -75,14 +73,15 @@ public class Boss : MonoBehaviour
             bossBabyOb.GetComponent<BossBaby>().rotatingSpeed = -75f;
         }
 
-        calledByShip = false;
-
         StartCoroutine("WaitToDestroy");
     }
 
     IEnumerator WaitToDestroy()
     {
-        gVar.score += gVar.level * 500;
+        if(gVar.calledByShip == false)
+        {
+            gVar.score += gVar.level * 500;
+        }
         
         yield return new WaitForSeconds(1f);
 

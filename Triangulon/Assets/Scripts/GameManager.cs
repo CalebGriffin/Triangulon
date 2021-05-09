@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     public Vector3 pos;
 
     public SpriteRenderer shipSR;
-    public Animator animator;
+    public SpriteRenderer cannonSR;
+    public Animator cannonAnimator;
 
     public bool waiting = false;
     public bool touchingBorder = false;
@@ -31,11 +32,15 @@ public class GameManager : MonoBehaviour
 
         Application.targetFrameRate = 60;
 
-        animator = cannon.GetComponent<Animator>();
+        cannonAnimator = cannon.GetComponent<Animator>();
+        cannonSR = cannon.GetComponent<SpriteRenderer>();
+
+        gVar.calledByShip = false;
     }
 
     public void Update()
     {
+        Debug.Log(gVar.score.ToString());
 
         pos = new Vector3(ship.transform.position.x, (ship.transform.position.y + 100f), ship.transform.position.z);
 
@@ -51,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown("space") && waiting == false)
         {
-            animator.SetTrigger("Fire");
+            cannonAnimator.SetTrigger("Fire");
             Instantiate(bullet, ship.transform.position + (transform.up * 1), ship.transform.rotation * Quaternion.Euler (0f, 0f, 0f));
             StartCoroutine("Wait");
         }
@@ -150,6 +155,7 @@ public class GameManager : MonoBehaviour
     public void Hit()
     {
         gVar.lives -= 1;
+        gVar.calledByShip = true;
 
         StartCoroutine("Explode");
     }
@@ -165,12 +171,14 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0f);
 
         shipSR.enabled = false;
+        cannonSR.enabled = false;
 
         particleSys.SetActive(true);
 
         gVar.paused = true;
         waiting = true;
         gVar.moving = false;
+        gVar.calledByShip = true;
 
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         powerups = GameObject.FindGameObjectsWithTag("PowerUp");
@@ -196,7 +204,6 @@ public class GameManager : MonoBehaviour
         }
         foreach (GameObject boss in bosses)
         {
-            boss.GetComponent<Boss>().calledByShip = true;
             boss.GetComponent<Boss>().Explode();
         }
         foreach (GameObject bossBaby in bossBabies)
@@ -222,10 +229,12 @@ public class GameManager : MonoBehaviour
         ship.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
 
         shipSR.enabled = true;
+        cannonSR.enabled = true;
 
         particleSys.SetActive(false);
 
         gVar.paused = false;
         waiting = false;
+        gVar.calledByShip = false;
     }
 }

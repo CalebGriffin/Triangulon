@@ -64,7 +64,10 @@ public class BossBaby : MonoBehaviour
 
     IEnumerator WaitToDestroy()
     {
-        gVar.score += gVar.level * 500;
+        if(gVar.calledByShip == false)
+        {
+            gVar.score += gVar.level * 500;
+        }
         
         yield return new WaitForSeconds(1f);
 

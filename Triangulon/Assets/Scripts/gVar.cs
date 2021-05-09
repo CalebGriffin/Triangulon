@@ -10,11 +10,13 @@ public class gVar
 
     public static int score;
 
-    public static int level = 0;
+    public static int level = 1;
 
     public static bool paused;
 
     public static bool flames;
+
+    public static bool calledByShip = false;
 
     public static float enemyMoveSpeed = 2f;
 
@@ -27,6 +29,8 @@ public class gVar
     public static float shootTimer = 3f;
 
     public static float spawnTimer;
+
+    public static float shakeMagnitude;
 
     // Temporarily adjusted for testing
     public static int gSpawnTimer = 4;
