@@ -14,8 +14,8 @@ public class Flame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ranX = Random.Range(0.3f, 0.4f);
-        ranY = Random.Range(0.2f, 0.4f);
+        ranX = Random.Range(0.8f, 1.0f);
+        ranY = Random.Range(2f, 3f);
 
         flames.transform.localScale = new Vector3(ranX, ranY, 1);
 
