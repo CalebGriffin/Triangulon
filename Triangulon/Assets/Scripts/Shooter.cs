@@ -9,6 +9,7 @@ public class Shooter : MonoBehaviour
     public GameObject enemyOb;
     public GameObject particleSys;
     public GameObject shooterBullet;
+    public GameObject cameraOb;
 
     public ConstraintSource shipSource;
 
@@ -21,12 +22,15 @@ public class Shooter : MonoBehaviour
     public Vector3 targetLoc;
 
     public bool alive;
+
+    public float disToShip;
     
     public Animator animator;
 
     void Awake()
     {
         ship = GameObject.Find("Ship");
+        cameraOb = GameObject.Find("Main Camera");
 
         aimC = GetComponent<AimConstraint>();
 
@@ -49,6 +53,8 @@ public class Shooter : MonoBehaviour
     {
         float step = gVar.shooterMoveSpeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, targetLoc, step);
+
+        disToShip = Vector3.Distance(transform.position, ship.transform.position);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -61,6 +67,30 @@ public class Shooter : MonoBehaviour
 
     public void Explode()
     {
+        switch (disToShip)
+        {
+            case float n when (n <= 3):
+                gVar.shakeMagnitude = 0.5f;
+                break;
+            
+            case float n when (n > 3 && n <= 7):
+                gVar.shakeMagnitude = 0.4f;
+                break;
+            
+            case float n when (n > 7 && n <= 11):
+                gVar.shakeMagnitude = 0.3f;
+                break;
+            
+            case float n when (n > 11 && n <= 14):
+                gVar.shakeMagnitude = 0.2f;
+                break;
+            
+            case float n when (n > 14):
+                gVar.shakeMagnitude = 0.1f;
+                break;
+        }
+        StartCoroutine(cameraOb.GetComponent<CameraShake>().Shake(0.2f, gVar.shakeMagnitude));
+
         alive = false;
 
         enemySR.enabled = false;
@@ -70,7 +100,7 @@ public class Shooter : MonoBehaviour
 
         if(gVar.calledByShip == false)
         {
-            gVar.score += gVar.level * 500;
+            gVar.score += gVar.level * 50;
         }
 
         StartCoroutine("WaitToDestroy");
@@ -87,7 +117,7 @@ public class Shooter : MonoBehaviour
     {
         if (gVar.calledByShip == false)
         {
-            gVar.score += gVar.level * 100;
+            gVar.score += gVar.level * 10;
         }
 
         alive = false;

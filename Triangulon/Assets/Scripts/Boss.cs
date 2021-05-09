@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
     public GameObject enemyOb;
     public GameObject particleSys;
     public GameObject bossBabyOb;
+    public GameObject cameraOb;
 
     public SpriteRenderer enemySR;
 
@@ -22,6 +23,7 @@ public class Boss : MonoBehaviour
     void Awake()
     {
         ship = GameObject.Find("Ship");
+        cameraOb = GameObject.Find("Main Camera");
 
         enemySR = enemyOb.GetComponent<SpriteRenderer>();
         hitbox = enemyOb.GetComponent<PolygonCollider2D>();
@@ -59,6 +61,8 @@ public class Boss : MonoBehaviour
 
     public void Explode()
     {
+        StartCoroutine(cameraOb.GetComponent<CameraShake>().Shake(0.2f, 0.4f));
+
         enemySR.enabled = false;
         hitbox.enabled = false;
 
@@ -80,7 +84,7 @@ public class Boss : MonoBehaviour
     {
         if(gVar.calledByShip == false)
         {
-            gVar.score += gVar.level * 500;
+            gVar.score += gVar.level * 25;
         }
         
         yield return new WaitForSeconds(1f);

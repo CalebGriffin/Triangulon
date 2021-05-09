@@ -9,12 +9,14 @@ public class Enemy : MonoBehaviour
     public GameObject enemyOb;
     public GameObject particleSys;
     public GameObject cameraOb;
+    public GameObject enemyFireOb;
 
     public ConstraintSource shipSource;
 
     public AimConstraint aimC;
 
     public SpriteRenderer enemySR;
+    public SpriteRenderer enemyFireSR;
 
     public PolygonCollider2D hitbox;
 
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour
 
         enemySR = enemyOb.GetComponent<SpriteRenderer>();
         hitbox = enemyOb.GetComponent<PolygonCollider2D>();
+        enemyFireSR = enemyFireOb.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -80,6 +83,7 @@ public class Enemy : MonoBehaviour
 
         enemySR.enabled = false;
         hitbox.enabled = false;
+        enemyFireSR.enabled = false;
 
         particleSys.SetActive(true);
 
@@ -90,7 +94,7 @@ public class Enemy : MonoBehaviour
     {
         if(gVar.calledByShip == false)
         {
-            gVar.score += gVar.level * 100;
+            gVar.score += gVar.level * 10;
         }
         
         yield return new WaitForSeconds(1f);

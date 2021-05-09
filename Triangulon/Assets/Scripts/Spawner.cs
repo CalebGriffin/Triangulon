@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
     {
         yield return new WaitForSeconds(gVar.spawnTimer);
 
-        gVar.enemyRandomiser = Random.Range(1, 30);
+        gVar.enemyRandomiser = Random.Range(1, 24);
 
         spawnPoint = Random.Range(0, 51);
 
@@ -40,17 +40,17 @@ public class Spawner : MonoBehaviour
 
         switch (gVar.enemyRandomiser)
         {
-            case 1:
+            case int n when (n > 0 && n < 7):
                 enemyToSpawn = Instantiate(boss, spawnPointVec, Quaternion.identity);
                 break;
             
-            case int n when (n > 1 && n < 7):
+            case int n when (n > 7 && n < 15):
                 spawnPointVec = new Vector3(14, 6, 0);
                 enemyToSpawn = Instantiate(shooter, spawnPointVec, Quaternion.identity);
                 enemyToSpawn.transform.localScale = Vector3.one * Random.Range(0.25f, 0.4f);
                 break;
 
-            case int n when (n > 6):
+            case int n when (n > 14):
                 enemyToSpawn = Instantiate(enemy, spawnPointVec, Quaternion.identity);
                 enemyToSpawn.transform.localScale = Vector3.one * Random.Range(0.3f, 0.5f);
                 break;

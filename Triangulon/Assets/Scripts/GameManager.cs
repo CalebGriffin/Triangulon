@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject bullet;
     public GameObject particleSys;
     public GameObject cannon;
+    public GameObject cameraOb;
     public GameObject[] enemies;
     public GameObject[] powerups;
     public GameObject[] shooters;
@@ -34,6 +35,8 @@ public class GameManager : MonoBehaviour
 
         cannonAnimator = cannon.GetComponent<Animator>();
         cannonSR = cannon.GetComponent<SpriteRenderer>();
+
+        cameraOb = GameObject.Find("Main Camera");
 
         gVar.calledByShip = false;
     }
@@ -169,6 +172,8 @@ public class GameManager : MonoBehaviour
     IEnumerator Explode()
     {
         yield return new WaitForSeconds(0f);
+
+        StartCoroutine(cameraOb.GetComponent<CameraShake>().Shake(0.2f, 0.5f));
 
         shipSR.enabled = false;
         cannonSR.enabled = false;
