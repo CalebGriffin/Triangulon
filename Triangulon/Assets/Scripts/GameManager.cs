@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
             gVar.moving = false;
         }
 
-        if (fuelSlider.value == 0)
+        if (fuelSlider.value == 0 && gVar.paused == false)
         {
             Hit();
         }
