@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 
         if (fuelSlider.value == 0)
         {
-            StartCoroutine("Explode");
+            Hit();
         }
     }
 
@@ -245,6 +245,7 @@ public class GameManager : MonoBehaviour
 
         shipSR.enabled = true;
         cannonSR.enabled = true;
+        fuelSlider.value = 100f;
 
         particleSys.SetActive(false);
 
