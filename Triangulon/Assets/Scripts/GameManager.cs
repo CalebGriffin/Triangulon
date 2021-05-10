@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject particleSys;
     public GameObject cannon;
     public GameObject cameraOb;
+    public GameObject fuelSpawner;
+    public GameObject currentFuel;
     public GameObject[] enemies;
     public GameObject[] powerups;
     public GameObject[] shooters;
@@ -130,6 +132,14 @@ public class GameManager : MonoBehaviour
             Hit();
             collision.gameObject.GetComponent<EnemyBullet>().Explode();
         }
+        if (collision.gameObject.tag == "Fuel")
+        {
+            fuelSlider.value = 100f;
+            collision.gameObject.GetComponent<Animator>().SetTrigger("Collected");
+            Destroy(collision.gameObject);
+            //respawn fuel
+            fuelSpawner.GetComponent<FuelSpawner>().Respawn();
+        }
         if (collision.gameObject.tag == "Top" && touchingBorder == false)
         {
             touchingBorder = true;
@@ -201,6 +211,8 @@ public class GameManager : MonoBehaviour
         bosses = GameObject.FindGameObjectsWithTag("Boss");
         bossBabies = GameObject.FindGameObjectsWithTag("BossBaby");
         enemyBullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
+        currentFuel = GameObject.FindGameObjectWithTag("Fuel");
+        Destroy(currentFuel);
         foreach (GameObject enemy in enemies)
         {
             enemy.GetComponent<Enemy>().Explode();
@@ -245,7 +257,9 @@ public class GameManager : MonoBehaviour
 
         shipSR.enabled = true;
         cannonSR.enabled = true;
+        
         fuelSlider.value = 100f;
+        fuelSpawner.GetComponent<FuelSpawner>().Respawn();
 
         particleSys.SetActive(false);
 

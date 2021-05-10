@@ -16,6 +16,7 @@ TagManager:
   - Top
   - Bottom
   - PP
+  - Fuel
   layers:
   - Default
   - TransparentFX
