@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public SpriteRenderer shipSR;
     public SpriteRenderer cannonSR;
     public Animator cannonAnimator;
+    public Slider fuelSlider;
 
     public bool waiting = false;
     public bool touchingBorder = false;
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
         cameraOb = GameObject.Find("Main Camera");
 
         gVar.calledByShip = false;
+
+        fuelSlider.value = 100f;
     }
 
     public void Update()
@@ -46,6 +49,8 @@ public class GameManager : MonoBehaviour
         Debug.Log(gVar.score.ToString());
 
         pos = new Vector3(ship.transform.position.x, (ship.transform.position.y + 100f), ship.transform.position.z);
+
+        fuelSlider.value -= 10f * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.LeftArrow) && gVar.paused == false)
         {
@@ -74,6 +79,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
             gVar.moving = false;
+        }
+
+        if (fuelSlider.value == 0)
+        {
+            StartCoroutine("Explode");
         }
     }
 
