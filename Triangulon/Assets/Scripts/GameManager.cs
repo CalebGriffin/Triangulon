@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -29,6 +30,9 @@ public class GameManager : MonoBehaviour
 
     public bool waiting = false;
     public bool touchingBorder = false;
+    public bool fuelEmpty = false;
+
+    public Text scoreText;
 
     public void Start()
     {
@@ -48,11 +52,11 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        Debug.Log(gVar.score.ToString());
-
         pos = new Vector3(ship.transform.position.x, (ship.transform.position.y + 100f), ship.transform.position.z);
 
-        fuelSlider.value -= 10f * Time.deltaTime;
+        fuelSlider.value -= 7.5f * Time.deltaTime;
+
+        scoreText.text = "Score: " + gVar.score.ToString();
 
         if (Input.GetKey(KeyCode.LeftArrow) && gVar.paused == false)
         {
@@ -177,6 +181,7 @@ public class GameManager : MonoBehaviour
 
     public void Hit()
     {
+        gVar.paused = true;
         gVar.lives -= 1;
         gVar.calledByShip = true;
 
@@ -250,6 +255,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Restart()
     {
+        Debug.Log("Restarted");
         yield return new WaitForSeconds(0.6f);
 
         ship.transform.position = new Vector3(0, 0, 0);

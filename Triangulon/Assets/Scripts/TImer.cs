@@ -7,7 +7,7 @@ public class TImer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //InvokeRepeating("LevelUp", 0f, 10f);
+        InvokeRepeating("LevelUp", 0f, 20f);
     }
 
     public void LevelUp()

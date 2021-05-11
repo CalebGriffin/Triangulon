@@ -56,6 +56,18 @@ public class Shooter : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetLoc, step);
 
         disToShip = Vector3.Distance(transform.position, ship.transform.position);
+
+        if ((transform.position - targetLoc).magnitude < 1)
+        {
+            if (gVar.calledByShip == false)
+            {
+                gVar.score += gVar.level * 10;
+            }
+
+            alive = false;
+
+            StartCoroutine("WaitToDestroy");
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -114,7 +126,7 @@ public class Shooter : MonoBehaviour
         Destroy(enemyOb);
     }
 
-    void OnBecameInvisible()
+    /*void OnBecameInvisible()
     {
         if (gVar.calledByShip == false)
         {
@@ -124,7 +136,7 @@ public class Shooter : MonoBehaviour
         alive = false;
 
         StartCoroutine("WaitToDestroy");
-    }
+    }*/
 
     public void Shoot()
     {
