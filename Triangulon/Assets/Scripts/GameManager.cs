@@ -4,6 +4,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject cameraOb;
     public GameObject fuelSpawner;
     public GameObject currentFuel;
+    public GameObject deathCanvas;
     public GameObject[] enemies;
     public GameObject[] powerups;
     public GameObject[] shooters;
@@ -33,6 +35,9 @@ public class GameManager : MonoBehaviour
     public bool fuelEmpty = false;
 
     public Text scoreText;
+    public Text livesText;
+    public Text menuScoreText;
+    public Text menuHighScoreText;
 
     public void Start()
     {
@@ -48,6 +53,14 @@ public class GameManager : MonoBehaviour
         gVar.calledByShip = false;
 
         fuelSlider.value = 100f;
+
+        if (PlayerPrefs.HasKey("highScore"))
+        {
+            gVar.highScore = PlayerPrefs.GetInt("highScore");
+            menuHighScoreText.text = "High Score: " + gVar.highScore.ToString();
+        }
+
+        deathCanvas.SetActive(false);
     }
 
     public void Update()
@@ -57,6 +70,8 @@ public class GameManager : MonoBehaviour
         fuelSlider.value -= 7.5f * Time.deltaTime;
 
         scoreText.text = "Score: " + gVar.score.ToString();
+        livesText.text = "Lives: " + gVar.lives.ToString();
+        menuScoreText.text = "Score: " + gVar.score.ToString();
 
         if (Input.GetKey(KeyCode.LeftArrow) && gVar.paused == false)
         {
@@ -90,6 +105,11 @@ public class GameManager : MonoBehaviour
         if (fuelSlider.value == 0 && gVar.paused == false)
         {
             Hit();
+        }
+
+        if (Input.GetKey("escape"))
+        {
+            SceneManager.LoadScene("MenuScene");
         }
     }
 
@@ -192,6 +212,16 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f);
         Time.timeScale = 0;
+
+        if (gVar.score > gVar.highScore)
+        {
+            gVar.highScore = gVar.score;
+            PlayerPrefs.SetInt("highScore", gVar.highScore);
+
+            menuHighScoreText.text = "High Score: " + gVar.highScore;
+        }
+
+        deathCanvas.SetActive(true);
     }
 
     IEnumerator Explode()
@@ -263,7 +293,7 @@ public class GameManager : MonoBehaviour
 
         shipSR.enabled = true;
         cannonSR.enabled = true;
-        
+
         fuelSlider.value = 100f;
         fuelSpawner.GetComponent<FuelSpawner>().Respawn();
 

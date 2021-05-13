@@ -10,6 +10,8 @@ public class gVar
 
     public static int score;
 
+    public static int highScore;
+
     public static int level = 1;
 
     public static bool paused;
