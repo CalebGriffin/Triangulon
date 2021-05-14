@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         gVar.lives = 3;
+        gVar.score = 0;
+        gVar.paused = false;
+
+        Time.timeScale = 1;
 
         Application.targetFrameRate = 60;
 
@@ -302,5 +306,10 @@ public class GameManager : MonoBehaviour
         gVar.paused = false;
         waiting = false;
         gVar.calledByShip = false;
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 }
