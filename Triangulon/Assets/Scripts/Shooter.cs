@@ -55,7 +55,7 @@ public class Shooter : MonoBehaviour
         alive = true;
 
         // Repeatedly calls a function based on the global variable so that it shoots more often the longer the player survives
-        InvokeRepeating("Shoot", 2f, gVar.shootTimer);
+        InvokeRepeating("Shoot", 1f, gVar.shootTimer);
     }
 
     // Update is called once per frame
