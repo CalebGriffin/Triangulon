@@ -363,4 +363,12 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MenuScene");
     }
+
+    // Called when the player goes back to the menu and it will reset all of the variables ready for the next game
+    public void globalReset()
+    {
+        gVar.score = 0;
+        gVar.lives = 3;
+        gVar.level = 1;
+    }
 }
