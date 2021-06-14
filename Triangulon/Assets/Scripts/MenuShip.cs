@@ -34,7 +34,7 @@ public class MenuShip : MonoBehaviour
             {
                 // Checks if the player is looking at the play button and then plays the game
                 case 0:
-                    if (playText.active == true)
+                    if (playText.activeSelf == true)
                     {
                         SceneManager.LoadScene("MainScene");
                     }
@@ -42,7 +42,7 @@ public class MenuShip : MonoBehaviour
                 
                 // Checks if the player is trying to quit or go back
                 case float n when (n < 0):
-                    if (quitText.active == true)
+                    if (quitText.activeSelf == true)
                     {
                         // Quits the game
                         Application.Quit();
