@@ -6,9 +6,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-// This script controls everything to do with the ship object including movement and animations and many other things, it also controls some extra elements that I added last minute and didn't want to make a new script to control
+// This script controls everything to do with the ship object including movement and animations and many other things,
+// it also controls some extra elements that I added last minute and didn't want to make a new script to control
 public class GameManager : MonoBehaviour
 {
+    #region Variable Declaration
     // GameObjects so that the script can access lots of information and interact with all of the objects in the game
     public GameObject ship;
     public GameObject bullet;
@@ -46,8 +48,10 @@ public class GameManager : MonoBehaviour
     // Controls the different text elements of the UI so that it can be updated with the score and lives
     public Text scoreText;
     public Text livesText;
+    public Text levelText;
     public Text menuScoreText;
     public Text menuHighScoreText;
+    #endregion
 
     public void Start()
     {
@@ -91,13 +95,8 @@ public class GameManager : MonoBehaviour
         // Sets the target position of the bullet so that it shoots straight
         pos = new Vector3(ship.transform.position.x, (ship.transform.position.y + 100f), ship.transform.position.z);
 
-        // Decreases the fuel by a certain amount every second
-        fuelSlider.value -= 7.5f * Time.deltaTime;
-
-        // Updates the UI to reflect the score and the lives
-        scoreText.text = "Score: " + gVar.score.ToString();
-        livesText.text = "Lives: " + gVar.lives.ToString();
-        menuScoreText.text = "Score: " + gVar.score.ToString();
+        // Runs a function which will update the UI in the game
+        UIUpdate();
 
         // Controls the player's input and movement
         if (Input.GetKey(KeyCode.LeftArrow) && gVar.paused == false)
@@ -142,6 +141,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UIUpdate()
+    {
+        // Decreases the fuel by a certain amount every second
+        fuelSlider.value -= 7.5f * Time.deltaTime;
+
+        // Updates the UI to reflect the score and the lives
+        scoreText.text = "Score: " + gVar.score.ToString();
+        livesText.text = "Lives: " + gVar.lives.ToString();
+        levelText.text = "Level: " + gVar.level.ToString();
+
+        // Updates the UI on the game over screen to reflect the score
+        menuScoreText.text = "Score: " + gVar.score.ToString();
+    }
+
     // Forces the player to wait so that they cannot spam the shoot button
     IEnumerator Wait()
     {
@@ -149,7 +162,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         waiting = false;
     }
-
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
