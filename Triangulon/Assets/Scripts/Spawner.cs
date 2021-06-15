@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    #region Variable Declaration
     // An array of gameobjects that will store all of the different spawn points
     public GameObject[] respawns;
     // GameObjects so that the script can spawn different prefabs
@@ -17,6 +18,7 @@ public class Spawner : MonoBehaviour
 
     // Vector3 of the spawn position
     public Vector3 spawnPointVec;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +30,11 @@ public class Spawner : MonoBehaviour
         StartCoroutine("Spawn");
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Spawn()
     {
         // Sets the timer to a random number based on the global variables
         gVar.spawnTimer = Random.Range(gVar.gSpawnTimer, gVar.gSpawnTimer - 2);
-    }
 
-    IEnumerator Spawn()
-    {
         // Waits for the random period of time
         yield return new WaitForSeconds(gVar.spawnTimer);
 

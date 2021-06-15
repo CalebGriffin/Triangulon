@@ -16,11 +16,12 @@ public class Timer : MonoBehaviour
         // Increases the level which affects how many points the player gets for killing enemies
         gVar.level += 1;
 
-        switch (gVar.lives)
+        switch (gVar.level)
         {
             // If the level is equal to 2,5,8 or 11 then it will make the ships spawn faster
             case 2: case 5: case 8: case 11: 
                 gVar.gSpawnTimer -= 1;
+                Debug.Log(gVar.gSpawnTimer.ToString());
                 break;
             // If the level is 3,6,9 or 12 then it will make the enemies move faster
             case 3: case 6: case 9: case 12: 

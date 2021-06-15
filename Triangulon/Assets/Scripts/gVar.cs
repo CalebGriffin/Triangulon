@@ -18,7 +18,7 @@ public class gVar
     public static int highScore;
 
     // Player's level
-    public static int level = 1;
+    public static int level = 0;
 
     // Is the game paused?
     public static bool paused;
@@ -51,7 +51,7 @@ public class gVar
     public static float shakeMagnitude;
 
     // Used as the maximum amount of time between enemies being spawned
-    public static int gSpawnTimer = 4;
+    public static int gSpawnTimer = 6;
 
     // Controls which enemy should be spawned
     public static int enemyRandomiser;
