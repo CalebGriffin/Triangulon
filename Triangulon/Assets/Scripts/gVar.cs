@@ -36,7 +36,7 @@ public class gVar
     public static float shooterMoveSpeed = 2f;
 
     // Controls how fast the boss enemies move
-    public static float bossMoveSpeed = 6f;
+    public static float bossMoveSpeed = 8f;
 
     // Controls how fast the enemy bullets are
     public static float enemyBulletSpeed = 6f;
