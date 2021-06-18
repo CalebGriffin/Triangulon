@@ -56,7 +56,7 @@ public class Spawner : MonoBehaviour
             
             // Spawns the shooter at a random size if the random number is between 5 and 10
             case int n when (n > 4 && n < 11):
-                spawnPointVec = new Vector3(14, 6, 0);
+                spawnPointVec = new Vector3(17, 6, 0);
                 enemyToSpawn = Instantiate(shooter, spawnPointVec, Quaternion.identity);
                 enemyToSpawn.transform.localScale = Vector3.one * Random.Range(0.25f, 0.4f);
                 break;

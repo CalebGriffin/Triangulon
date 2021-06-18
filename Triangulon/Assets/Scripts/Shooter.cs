@@ -50,7 +50,7 @@ public class Shooter : MonoBehaviour
         hitbox = enemyOb.GetComponent<PolygonCollider2D>();
 
         // Finds the location for the shooter to moves towards
-        targetLoc = new Vector3(-14, 6, 0);
+        targetLoc = new Vector3(-18, 6, 0);
 
         alive = true;
 

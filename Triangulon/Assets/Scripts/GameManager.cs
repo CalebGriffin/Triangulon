@@ -217,22 +217,22 @@ public class GameManager : MonoBehaviour
         if (collision.gameObject.tag == "Top" && touchingBorder == false)
         {
             touchingBorder = true;
-            ship.transform.position = new Vector3(ship.transform.position.x, -10f, ship.transform.position.z);
+            ship.transform.position = new Vector3(ship.transform.position.x, -7.5f, ship.transform.position.z);
         }
         if (collision.gameObject.tag == "Bottom" && touchingBorder == false)
         {
             touchingBorder = true;
-            ship.transform.position = new Vector3(ship.transform.position.x, 10f, ship.transform.position.z);
+            ship.transform.position = new Vector3(ship.transform.position.x, 7.5f, ship.transform.position.z);
         }
         if (collision.gameObject.tag == "Right" && touchingBorder == false)
         {
             touchingBorder = true;
-            ship.transform.position = new Vector3(-13.5f, ship.transform.position.y, ship.transform.position.z);
+            ship.transform.position = new Vector3(-14.5f, ship.transform.position.y, ship.transform.position.z);
         }
         if (collision.gameObject.tag == "Left" && touchingBorder == false)
         {
             touchingBorder = true;
-            ship.transform.position = new Vector3(13.5f, ship.transform.position.y, ship.transform.position.z);
+            ship.transform.position = new Vector3(14.5f, ship.transform.position.y, ship.transform.position.z);
         }
     }
 
@@ -381,6 +381,25 @@ public class GameManager : MonoBehaviour
     {
         gVar.score = 0;
         gVar.lives = 3;
-        gVar.level = 1;
+        gVar.level = 0;
+
+        // How fast should the enemies move towards the player
+        gVar.enemyMoveSpeed = 2f;
+
+        // Controls how fast the shooter enemies move
+        gVar.shooterMoveSpeed = 2f;
+
+        // Controls how fast the boss enemies move
+        gVar.bossMoveSpeed = 8f;
+
+        // Controls how fast the enemy bullets are
+        gVar.enemyBulletSpeed = 6f;
+
+        // Controls how often the shooter enemies shoot
+        gVar.shootTimer = 3f;
+        
+        // Used as the maximum amount of time between enemies being spawned
+        gVar.gSpawnTimer = 6;
+
     }
 }
