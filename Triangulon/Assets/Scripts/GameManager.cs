@@ -373,6 +373,10 @@ public class GameManager : MonoBehaviour
     // This is called by the button on the game over screen to send the player back to the main menu
     public void BackToMenu()
     {
+        // Resets all of the global variables
+        globalReset();
+
+        // Loads the menu scene
         SceneManager.LoadScene("MenuScene");
     }
 

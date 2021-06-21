@@ -922,4 +922,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MenuScene.unity
   - Assets/Scenes/MainScene.unity
-  playerPath: /Users/caleb/Documents/Triangulon v1.0
+  playerPath: /Users/caleb/Documents/Triangulon v1.1
