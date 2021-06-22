@@ -4937,6 +4937,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CDeathU3Ed__36__ctor_m05C0C4AFBD9E72C1
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CExplodeU3Ed__37__ctor_mBBE5A63C208AF9D64EA708BAA5FBE810415B7355 (U3CExplodeU3Ed__37_tF702F50D068B52A498C8A0293F0F5966C9C0C2CE * __this, int32_t ___U3CU3E1__state0, const RuntimeMethod* method);
 // System.Void GameManager/<Restart>d__38::.ctor(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CRestartU3Ed__38__ctor_m5D3D4FF0E321061CC4340582FC4274ABE698B982 (U3CRestartU3Ed__38_t7F551F2329342F1892D3C09F9566960BEFC22DFD * __this, int32_t ___U3CU3E1__state0, const RuntimeMethod* method);
+// System.Void GameManager::globalReset()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_globalReset_mEC39D970339D637804FF8201FE4BDE98AD0660F3 (GameManager_tAC830B937D5E37F47803FE8AB44CAB0762B77B89 * __this, const RuntimeMethod* method);
 // System.Void UnityEngine.PlayerPrefs::SetInt(System.String,System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlayerPrefs_SetInt_mBF4101DF829B4738CCC293E1C2D173AEE45EFE62 (String_t* ___key0, int32_t ___value1, const RuntimeMethod* method);
 // System.String System.String::Concat(System.Object,System.Object)
@@ -7868,6 +7870,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_BackToMenu_m9E94D0C875CDD458
 		s_Il2CppMethodInitialized = true;
 	}
 	{
+		// globalReset();
+		GameManager_globalReset_mEC39D970339D637804FF8201FE4BDE98AD0660F3(__this, /*hidden argument*/NULL);
 		// SceneManager.LoadScene("MenuScene");
 		IL2CPP_RUNTIME_CLASS_INIT(SceneManager_t68A7070D2AD3860C3EE327C94F38270E49AFB489_il2cpp_TypeInfo_var);
 		SceneManager_LoadScene_mFC850AC783E5EA05D6154976385DFECC251CDFB9(_stringLiteral79363F7261D1C21983552D3182E51FAE709B9027, /*hidden argument*/NULL);
