@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public Animator cannonAnimator;
 
     // Controls the fuel system
+    
     public Slider fuelSlider;
 
     // Boolean variables to control different elements of the game like checking if the game is paused
